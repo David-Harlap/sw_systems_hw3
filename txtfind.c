@@ -1,11 +1,11 @@
-#include "txtfinder.h"
+#include "txtfind.h"
 #include <stdio.h>
 #include "string.h"
 
 #define LINE 256
 #define WORD 30
 
-int getline(char s[]){
+/*int getline(char s[]){
     char ch;
     int count=0;
     scanf( "%c" ,ch);
@@ -31,7 +31,7 @@ int getword(char w[]){
     }
     w[count]='\0';
     return count;
-}
+}*/
 
 int substring( char * str1, char * str2){
     int i = 0,ans=0;
@@ -56,15 +56,15 @@ int substring( char * str1, char * str2){
 }
 
 int similar (char *s, char *t, int n){
-    int slen = strlen(*s);
-    int tlen = strlen(*t);
+    int slen = strlen(s);
+    int tlen = strlen(t);
     int count= 0, i=0,j=0;
 
     if(tlen>slen){
         return 0;
         }
     else if((slen==tlen)||(n==0)){
-        if(strcmp(*s,*t)==0){
+        if(strcmp(s,t)==0){
             return 1;}
         else
             {return 0;}  
@@ -103,13 +103,13 @@ void print_lines(char * str){
     char s[LINE];
     char ch;
     int count=0;
-    scanf( "%c" ,ch);
+    scanf( "%c" ,&ch);
 
     while (ch != '\0'){
         while (ch != '\n'|| ch != '\0'){
             s[count]=ch;
             count++;
-            scanf("%c",ch);
+            scanf("%c",&ch);
         }
         if(substring(&s,str)){
             printf("%s", s);
@@ -123,13 +123,13 @@ void print_similar_words(char * str){
     char w[LINE];
     char ch;
     int count=0;
-    scanf( "%c" ,ch);
+    scanf( "%c" ,&ch);
 
     while (ch != '\0'){
         while (ch != '\n'|| ch != '\0' || ch!='\t'|| ch!=' '){
             w[count]=ch;
             count++;
-            scanf("%c",ch);
+            scanf("%c",&ch);
         }
         if(similar(&w,str,1)){
             printf("%s", w);
@@ -143,14 +143,14 @@ int main(){
     char str[WORD];
     char ch;
     int count = 0;
-    scanf( "%c" ,ch);
+    scanf( "%c" ,&ch);
 
     while (ch != ' '){
         str[count] = ch;
         count++;
-        scanf("%c",ch);
+        scanf("%c",&ch);
     }
-    scanf("%c",ch);
+    scanf("%c",&ch);
     if(ch == 'a'|| ch=='A'){
         print_lines(str);
     }
