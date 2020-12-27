@@ -25,6 +25,6 @@ isort.o: isort.c isort.h
 	$(CC) $(FLAGS) -c isort.c
 
 clean:
-	rm -f *.o *.a  run
+	rm -f *.o *.a  isort txtfind
 
 .PHONY: clean all
