@@ -12,10 +12,11 @@ int getword(const char *l, char *w) {
         *(w + i) = *(l + i);
         ++i;
     }
+    *(w + i) = 0;
     return ++i;
 }
 
-int substring(char *str1, char *str2) {
+int substring(char *str1, const char *str2) {
     int i = 0, ans = 0;
 
     while (i < strlen(str1)) {
@@ -37,7 +38,7 @@ int substring(char *str1, char *str2) {
     return 0;
 }
 
-int similar(char *s, char *t, int n) {
+int similar(char *s, const char *t, int n) {
     int slen = strlen(s);
     int tlen = strlen(t);
     int count = 0, i = 0, j = 0;
@@ -68,15 +69,15 @@ int similar(char *s, char *t, int n) {
     return 0;
 }
 
-void reset(char *s, int count) {
+void reset(char *s) {
     int i = 0;
-    while (i < count) {
+    while (i < strlen(s)) {
         *(s + i) = '0';
         i++;
     }
 }
 
-void print_lines(char *str) {
+void print_lines(const char *str) {
     char line[LINE];
     // char word[WORD];
     // char ch;
@@ -103,24 +104,23 @@ void print_lines(char *str) {
     // }
 }
 
-void print_similar_words(char *str) {
-    char w[LINE];
-    char ch;
-    int count = 0;
-    fgets(w, LINE, stdin);
-    // scanf(" %c", &ch);
+void print_similar_words(const char *str) {
+    char word[WORD];
+    char line[LINE];
+    printf("enter print simular with the word '%s'\n", str);
 
-    while (ch != '\0') {
-        while (ch != '\n' || ch != '\0' || ch != '\t' || ch != ' ') {
-            w[count] = ch;
-            count++;
-            scanf(" %c", &ch);
+    while (fgets(line, LINE, stdin)) {
+        int i = 0;
+        while (i < strlen(line))
+        {
+            i += getword(line + i, word);
+            puts(word);
+            if (similar(word, str, 1)) {
+                printf("%s\n", word);
+            }
+            // reset(word);
         }
-        if (similar(w, str, 1)) {
-            printf("%s", w);
-        }
-        reset(w, count);
-        count = 0;
+        // printf("\n");
     }
 }
 
