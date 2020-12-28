@@ -5,9 +5,9 @@ void reset(char *s);
 
 int getword(const char *l, char *w);
 
-int substring(char *str1, const char *str2);
+int substring(const char *str1, const char *str2);
 
-int similar(char *s, const char *t, int n);
+int similar(const char *s, const char *t, int n);
 
 void print_lines(const char *str);
 
