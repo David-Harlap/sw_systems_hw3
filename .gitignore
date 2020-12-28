@@ -1,4 +1,6 @@
 *.o
 *.a
 *.so
-main
+txtfind
+isort
+*.txt
