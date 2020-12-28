@@ -69,19 +69,11 @@ int similar(const char *s, const char *t, int n) {
     return 0;
 }
 
-void reset(char *s) {
-    int i = 0;
-    while (i < strlen(s)) {
-        *(s + i) = '0';
-        i++;
-    }
-}
-
 void print_lines(const char *str) {
     char line[LINE];
     while (fgets(line, LINE, stdin)) {
         if (substring(line, str)) {
-            puts(line);
+            printf("%s", line);
         }
     }
 }
